@@ -2,7 +2,7 @@ FROM rust:1.61-slim-bullseye as builder
 WORKDIR /opt/overtone
 COPY . .
 RUN apt update && \
-	apt install libwebkit2gtk-4.0-dev \
+	apt install -yq libwebkit2gtk-4.0-dev \
 	build-essential \
 	curl \
 	wget \
@@ -19,7 +19,7 @@ FROM gitpod/workspace-full-vnc
 WORKDIR /opt/overtone
 RUN apt update && \
 	apt upgrade -yq && \
-	apt install libgtk-3-dev && \
+	apt install -yq libgtk-3-dev && \
 	apt autoremove && \
 	apt clean && \
 	rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*
